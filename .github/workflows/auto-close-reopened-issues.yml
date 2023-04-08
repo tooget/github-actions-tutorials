@@ -1,0 +1,15 @@
+name: Auto Close Reopened Issues
+
+on:
+  issues:
+    types: [reopened]
+
+jobs:
+  close_issue:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Close reopened issue
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        gh issue close ${{ github.event.issue.number }}
