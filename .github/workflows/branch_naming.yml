@@ -1,0 +1,26 @@
+name: Branch Naming Convention
+
+on:
+  push:
+
+jobs:
+  check_branch_name:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check branch name
+      run: |
+        branch_name="${GITHUB_REF#refs/heads/}"
+        allowed_prefixes=("feature/" "bugfix/")
+        is_allowed=false
+
+        for prefix in "${allowed_prefixes[@]}"; do
+          if [[ $branch_name == $prefix* ]]; then
+            is_allowed=true
+            break
+          fi
+        done
+
+        if [[ $is_allowed == false ]]; then
+          echo "ERROR: The branch name '$branch_name' is not allowed. Please use one of the following prefixes: ${allowed_prefixes[*]}"
+          exit 1
+        fi
