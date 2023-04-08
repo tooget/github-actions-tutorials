@@ -8,6 +8,9 @@ jobs:
   close_issue:
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
     - name: Close reopened issue
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
