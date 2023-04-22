@@ -16,8 +16,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        gh issue comment ${{ github.event.issue.number }} --body "@${{ github.event.sender.login }} 님, 추가적인 업무가 있으시면 새로운 이슈를 만들어주시는 건 어떠실까요? :point_right: [**Create a New Issue**](https://github.com/tooget/github-actions-tutorials/issues/new)<br/>혹시 다시 오픈해야 할 문제가 있으시면 @tooget 님에게 문의를 부탁드려요."
-
+        gh issue comment ${{ github.event.issue.number }} --body "@${{ github.event.sender.login }} 님, 추가적인 업무가 있으시면 새로운 이슈를 만들어주시는 건 어떠실까요? :point_right: [**Create a New Issue**](${{ github.server_url }}/${{ github.repository }}/issues/new)<br/>혹시 다시 오픈해야 할 문제가 있으시면 @tooget 님에게 문의를 부탁드려요."
     - name: Close reopened issue
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
